@@ -11,10 +11,8 @@
 //BCD to decimal
 static uint8_t FixValue(uint8_t val)
 {
-  uint8_t temp = 0;
   uint8_t dec = 0;
-  temp = val;
-  dec = (((temp & 0xF0) >> 4) *10) + (temp & 0x0F);
+  dec = (((val & 0xF0) >> 4) *10) + (val & 0x0F);
   return dec;
 }
 
@@ -49,7 +47,6 @@ sysfs_show(struct device *dev,
            struct device_attribute *attr,
            char *buffer)
 {
-  //ToDo
     uint8_t h, m, s, d, mon, y;
     printk(KERN_INFO "sysfile_read (/sys/kernel/%s/%s) called\n", sysfs_dir, sysfs_file);
     GetRTC(&h, &m, &s, &d, &mon, &y);
